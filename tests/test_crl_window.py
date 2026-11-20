@@ -14,8 +14,15 @@ def crl(number, this_update, next_update, entries, issuer="CN=CA", critical=None
     }
 
 
-def base(entries=None, issuer="CN=CA"):
-    return crl(5, 100, 200, entries or [{"serial": "0A1B", "reason": "keyCompromise"}], issuer)
+def base(entries=None, issuer="CN=CA", critical=None):
+    return crl(
+        5,
+        100,
+        200,
+        entries or [{"serial": "0A1B", "reason": "keyCompromise"}],
+        issuer,
+        critical,
+    )
 
 
 def test_check_reports_revoked_serial():
